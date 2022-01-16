@@ -19,6 +19,7 @@ end
 group :development, :test do
   gem 'sqlite3', '~> 1.4'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'rails-controller-testing', '~> 1.0.4'
 end
 
 group :development do
@@ -26,7 +27,6 @@ group :development do
   gem 'listen', '~> 3.2'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'rails-controller-testing', '~> 1.0.4'
   gem 'minitest',                 '~> 5.11.3'
   gem 'minitest-reporters',       '~> 1.3.8'
   gem 'guard',                    '~> 2.16.2'
