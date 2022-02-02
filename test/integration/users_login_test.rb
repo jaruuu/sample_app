@@ -54,4 +54,12 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     log_in_as(@user, remember_me: "0")
     assert_empty cookies[:remember_token]
   end
+
+  test "login with forwarding_url" do
+    get edit_user_path(@user)
+    assert_equal edit_user_url(@user), session[:forwarding_url]
+    log_in_as(@user)
+    assert_redirected_to edit_user_path(@user)
+    assert_equal nil, session[:forwarding_url]
+  end
 end
