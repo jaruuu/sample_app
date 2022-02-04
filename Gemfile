@@ -13,6 +13,8 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'faker'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 
 group :production do
   gem 'pg', '~> 1.1.4'
