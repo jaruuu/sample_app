@@ -1,9 +1,9 @@
 class User < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
 
-  before_save { email.downcase! }
 
   has_secure_password
+  before_save :downcase_email
 
   attr_accessor :remember_token
 
@@ -33,5 +33,9 @@ class User < ApplicationRecord
 
   def User.new_token
     SecureRandom.urlsafe_base64
+  end
+
+  def downcase_email
+    self.email = email.downcase
   end
 end
