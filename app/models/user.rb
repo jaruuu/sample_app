@@ -1,11 +1,12 @@
 class User < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
 
-
+  attr_accessor :remember_token, :activation_token
   has_secure_password
-  before_save :downcase_email
 
-  attr_accessor :remember_token
+  before_save :downcase_email
+  before_create :create_activation_digest
+
 
   validates :name, presence: true, length: { maximum: 50 }
   validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
@@ -38,4 +39,11 @@ class User < ApplicationRecord
   def downcase_email
     self.email = email.downcase
   end
+
+  private
+
+    def create_activation_digest
+      self.activation_token = User.new_token
+      self.activation_digest = User.digest(activation_token)
+    end
 end
