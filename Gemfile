@@ -16,6 +16,9 @@ gem 'faker'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'active_storage_validations', '~> 0.8.2'
+gem 'image_processing'
+gem 'mini_magick'
+
 
 group :production do
   gem 'pg', '~> 1.1.4'
