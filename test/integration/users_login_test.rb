@@ -60,6 +60,6 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_equal edit_user_url(@user), session[:forwarding_url]
     log_in_as(@user)
     assert_redirected_to edit_user_path(@user)
-    assert_equal nil, session[:forwarding_url]
+    assert_nil session[:forwarding_url]
   end
 end
