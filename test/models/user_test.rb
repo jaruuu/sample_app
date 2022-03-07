@@ -87,13 +87,22 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.authenticated?(:remember, '')
   end
 
-  test "should follow and unfollow user" do
+  test "follow an user" do
     michael = users(:michael)
     archer = users(:archer)
     assert_not michael.following?(archer)
+
     michael.follow(archer)
     assert michael.following?(archer)
     assert archer.followers.include?(michael)
+  end
+
+  test "unfollow an user" do
+    michael = users(:michael)
+    archer = users(:archer)
+    Relationship.create!(follower_id: michael.id, followed_id: archer.id)
+    assert michael.following?(archer)
+
     michael.unfollow(archer)
     assert_not michael.following?(archer)
   end
