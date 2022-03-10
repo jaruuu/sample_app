@@ -63,10 +63,6 @@ class User < ApplicationRecord
     SecureRandom.urlsafe_base64
   end
 
-  def downcase_email
-    self.email = email.downcase
-  end
-
   def feed
     following_ids = "select followed_id from relationships where follower_id = :user_id"
     Micropost.where("user_id in (#{following_ids}) or user_id = :user_id", user_id: id)
@@ -89,5 +85,9 @@ class User < ApplicationRecord
     def create_activation_digest
       self.activation_token = User.new_token
       self.activation_digest = User.digest(activation_token)
+    end
+
+    def downcase_email
+      self.email = email.downcase
     end
 end
