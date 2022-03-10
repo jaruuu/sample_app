@@ -112,6 +112,11 @@ GEM
     erubi (1.10.0)
     erubis (2.7.0)
     execjs (2.8.1)
+    factory_bot (6.2.0)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.2.0)
+      factory_bot (~> 6.2.0)
+      railties (>= 5.0.0)
     faker (2.19.0)
       i18n (>= 1.6, < 2)
     ffi (1.15.5)
@@ -336,6 +341,7 @@ DEPENDENCIES
   bootstrap-will_paginate
   byebug
   capybara (>= 2.15)
+  factory_bot_rails
   faker
   guard (~> 2.16.2)
   guard-minitest (~> 2.4.6)
