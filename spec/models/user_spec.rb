@@ -110,4 +110,66 @@ describe User, type: :model do
       end
     end
   end
+
+  describe "#follow" do
+    let(:user) { create :user }
+    let(:other_user) { create :user }
+
+    it do
+      expect(user.following?(other_user)).to be_falsey
+      user.follow(other_user)
+      expect(user.following?(other_user)).to be_truthy
+    end
+  end
+
+  describe "#unfollow" do
+    let(:user) { create :user }
+    let(:other_user) { create :user }
+
+    before { user.follow(other_user) }
+
+    it do
+      expect(user.following?(other_user)).to be_truthy
+      user.unfollow(other_user)
+      expect(user.following?(other_user)).to be_falsey
+    end
+  end
+
+  describe "#following" do
+    let(:user) { create :user }
+    let(:followed_user) { create :user }
+    let(:not_followed_user) { create :user }
+
+    before { user.follow(followed_user) }
+
+    it do
+      expect(user.following?(followed_user)).to be_truthy
+      expect(user.following?(not_followed_user)).to be_falsey
+    end
+  end
+
+  describe "#feed" do
+    let(:user) { create :user }
+    let(:followed_user) { create :user }
+    let(:not_followed_user) { create :user }
+
+    before do
+      user.follow(followed_user)
+      create :micropost, user: user
+      create :micropost, user: followed_user
+      create :micropost, user: not_followed_user
+    end
+
+    it "display self and followed users posts" do
+      include_posts = Micropost.where(user_id: [user.id, followed_user.id])
+      not_include_posts = Micropost.where(user_id: not_followed_user.id)
+
+      include_posts.each do |include_post|
+        expect(user.feed).to include include_post
+      end
+      not_include_posts.each do |not_include_post|
+        expect(user.feed).not_to include not_include_post
+      end
+    end
+  end
 end
