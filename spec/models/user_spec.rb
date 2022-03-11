@@ -1,4 +1,4 @@
-require "rails_helper.rb"
+require "rails_helper"
 
 describe User, type: :model do
   describe "#validation" do
