@@ -149,16 +149,11 @@ describe User, type: :model do
   end
 
   describe "#feed" do
-    let(:user) { create :user }
-    let(:followed_user) { create :user }
-    let(:not_followed_user) { create :user }
+    let(:user) { create :user, :with_micropost }
+    let(:followed_user) { create :user, :with_micropost }
+    let(:not_followed_user) { create :user, :with_micropost }
 
-    before do
-      user.follow(followed_user)
-      create :micropost, user: user
-      create :micropost, user: followed_user
-      create :micropost, user: not_followed_user
-    end
+    before { user.follow(followed_user) }
 
     it "display self and followed users posts" do
       include_posts = Micropost.where(user_id: [user.id, followed_user.id])
