@@ -13,7 +13,7 @@ describe "StaticPages", type: :request do
         get root_url
         is_expected.to have_http_status :ok
         expect(assigns(:micropost).user_id).to eq user.id
-        expect(assigns(:feed_items)).to eq user.feed.paginate(page: 1)
+        expect(assigns(:feed_items)).to eq user.feed.page(1)
       end
     end
 

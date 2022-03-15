@@ -15,7 +15,7 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
     assert_select "div.pagination", count: 2
     assert_select "div.pagination", count: 2
     assert_select "a[href=?]", user_path(@non_activated), text: @non_activated.name, count: 0
-    User.paginate(page: 1).each do |user|
+    User.page(1).each do |user|
       if user.activated?
         assert_select "a[href=?]", user_path(user), text: user.name
         unless user == @admin

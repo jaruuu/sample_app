@@ -20,6 +20,7 @@ gem 'image_processing'
 gem 'mini_magick'
 gem 'aws-sdk-s3', require: false
 gem "haml-rails", "~> 2.0"
+gem "kaminari"
 
 group :production do
   gem 'pg', '~> 1.1.4'

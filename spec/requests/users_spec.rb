@@ -55,7 +55,7 @@ describe "Users", type: :request do
         get user_path(user)
         expect(response).to have_http_status :ok
         expect(assigns(:user)).to eq user
-        expect(assigns(:microposts)).to eq user.microposts.paginate(page: 1)
+        expect(assigns(:microposts)).to eq user.microposts.page(1)
       end
     end
   end
@@ -244,7 +244,7 @@ describe "Users", type: :request do
         get following_user_path(user)
         expect(assigns(:title)).to eq "Following"
         expect(assigns(:user)).to eq user
-        expect(assigns(:users)).to eq user.following.paginate(page: 1)
+        expect(assigns(:users)).to eq user.following.page(1)
         expect(response).to render_template("show_follow")
       end
     end
@@ -272,7 +272,7 @@ describe "Users", type: :request do
         get followers_user_path(user)
         expect(assigns(:title)).to eq "Followers"
         expect(assigns(:user)).to eq user
-        expect(assigns(:users)).to eq user.followers.paginate(page: 1)
+        expect(assigns(:users)).to eq user.followers.page(1)
         expect(response).to render_template("show_follow")
       end
     end
