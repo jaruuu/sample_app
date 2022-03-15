@@ -12,8 +12,7 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
     log_in_as(@admin)
     get users_path
     assert_template "users/index"
-    assert_select "div.pagination", count: 2
-    assert_select "div.pagination", count: 2
+    assert_select "ul.pagination", count: 2
     assert_select "a[href=?]", user_path(@non_activated), text: @non_activated.name, count: 0
     User.page(1).each do |user|
       if user.activated?

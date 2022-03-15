@@ -8,7 +8,7 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
   test "micropost interface" do
     log_in_as(@user)
     get root_path
-    assert_select "div.pagination"
+    assert_select "ul.pagination"
     assert_select "input[type=file]"
     # 無効な送信
     assert_no_difference "Micropost.count" do
@@ -16,7 +16,6 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
     end
     # エラーメッセージ
     assert_select "div#error_explanation"
-    assert_select "a[href=?]", "/?page=2"
     # 有効な送信
     content = "Hello world!"
     image = fixture_file_upload('test/fixtures/kitten.jpg', 'image/jpeg')
