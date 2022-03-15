@@ -382,7 +382,6 @@ DEPENDENCIES
   web-console (>= 3.3.0)
   webdrivers
   webpacker (~> 5.0)
-  will_paginate
 
 RUBY VERSION
    ruby 3.0.3p157
