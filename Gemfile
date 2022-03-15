@@ -20,6 +20,7 @@ gem 'mini_magick'
 gem 'aws-sdk-s3', require: false
 gem "haml-rails", "~> 2.0"
 gem "kaminari"
+gem 'bootstrap', '~> 5.1.3'
 
 group :production do
   gem 'pg', '~> 1.1.4'
