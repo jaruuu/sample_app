@@ -12,7 +12,7 @@
 詳細は [LICENSE.md](LICENSE.md) をご覧ください。
 
 ## 使い方
-
+### ローカル
 このアプリケーションを動かす場合は、まずはリポジトリを手元にクローンしてください。
 その後、次のコマンドで必要になる RubyGems をインストールします。
 
@@ -42,3 +42,19 @@ $ rails server
 
 詳しくは、[*Ruby on Rails チュートリアル*](https://railstutorial.jp/)
 を参考にしてください。
+
+### rails on docker
+Docker コンテナ上でもアプリケーションを動かせます。
+
+#### docker イメージの構築と起動
+```
+$ docker-compose build
+$ docker-compose up -d
+```
+
+#### データベースのセットアップ
+```
+$ docker exec sample_app-web-1 bin/rails db:create db:migrate db:seed db:test:load
+```
+
+localhost:3000 でアクセスできます
