@@ -45,6 +45,10 @@ group :development do
   gem 'guard-minitest',           '~> 2.4.6'
   gem 'pronto'
   gem 'pronto-rubocop', require: false
+  gem 'pronto-rails_best_practices', require: false
+  gem 'pronto-brakeman', require: false
+  gem 'pronto-yamllint', require: false
+  gem 'pronto-reek', require: false
 end
 
 group :test do
